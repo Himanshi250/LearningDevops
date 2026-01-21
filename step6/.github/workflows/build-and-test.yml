@@ -1,0 +1,27 @@
+name: Build and Test
+
+on:
+  workflow_call:
+    inputs:
+      runtime:
+        type: string
+        required: true
+      skip_tests:
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print runtime
+        run: echo "Runtime version is ${{ inputs.runtime }}"
+
+      - name: Run tests
+        if: ${{ inputs.skip_tests == false }}
+        run: echo "Running tests..."
+
+      - name: Skip tests
+        if: ${{ inputs.skip_tests == true }}
+        run: echo "Tests skipped"
