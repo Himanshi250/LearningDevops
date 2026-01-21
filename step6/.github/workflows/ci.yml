@@ -1,1 +1,11 @@
+name: Caller Pipeline
 
+on:
+  push:
+
+jobs:
+  call-build:
+    uses: ./.github/workflows/build-and-test.yml
+    with:
+      runtime: "python-3.10"
+      skip_tests: false
